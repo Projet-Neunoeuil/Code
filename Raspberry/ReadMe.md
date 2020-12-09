@@ -77,7 +77,7 @@ ___
 #### Source :
 Les conventions cités viennent surtout du [PEP - 0008](https://www.python.org/dev/peps/pep-0008/).
 Il s'agit d'une version abrégée...trés abrégée :
-### #Indentation
+#### Indentation
 
 Utilisez 4 éspaces par niveau d'indentation
 
@@ -103,20 +103,6 @@ def long_function_name(
 foo = long_function_name(
     var_one, var_two,
     var_three, var_four)
-    
-    
-    
-# Incorrecte :
-
-# Arguments interdits sur la première ligne s'il n'y a pas d'alignement vertical.
-foo = long_function_name(var_one, var_two,
-    var_three, var_four)
-
-# Un cran d'indentation supplémentaire requis dans une fonction pour distinger le Hanging Indent des instructions.
-def long_function_name(
-    var_one, var_two, var_three,
-    var_four):
-    print(var_one)
 ```
 A noter que pour les lignes continues, l'indentation à 4 espaces est optionnelle.
 ```python
@@ -173,10 +159,10 @@ result = some_function_that_takes_arguments(
 )
 ```
 
-### Tabs ou espaces?
+#### Tabs ou espaces?
 Les espaces sont préférés aux tabs, ceux-ci ne devant être utilisé que pour du code déjà indenté avec des Tabs. Python 3 interdit le mélange des deux.
 
-### Taille de ligne maximale
+#### Taille de ligne maximale
 Limiter toutes les lignes à un maximum de 79 caractères.
 
 Pour des blocs de texte avec moins de restrictions structurelles (les commentaires par exemple), la taille d'une ligne devrait être limitée à 72 caractères.
@@ -191,7 +177,7 @@ Un autre cas similaire peut être fait avec l'instruction `assert`.
 
 Soyez sur d'indenter correctement les lignes continues.
 
-### Une ligne doit-elle s'arrêter avant ou après un opérateur binaire ?
+#### Une ligne doit-elle s'arrêter avant ou après un opérateur binaire ?
 On doit revenir a la ligne avant l'opérateur pour la lisibilité du code
 ```python
 # il est facile de faire correspondre les opérateurs et les opérandes
@@ -203,21 +189,17 @@ income = (gross_wages
 ```
 
 
-### Encodage des fichiers
+#### Encodage des fichiers
 Le code dans la distribution Python de base devrait toujours utiliser UTF-8 (ou ASCII dans Python 2).
 
 Les fichiers utilisant l'ASCII (en Python 2) ou l'UTF-8 (en Python 3) ne doivent pas avoir de déclaration d'encodage.
 
-### Les imports
+#### Les imports
 Les imports doivent être sur des lignes séparées
 ```python
 # Correcte:
 import os
 import sys
-
-
-# Incorrecte:
-import sys, os
 ```
 Cependant il est accepté de faire ceci :
 ```python
@@ -236,31 +218,27 @@ Vous devez mettre une ligne blanche entre chaque groupe d'imports.
 
 
 
-### Délimiteurs de chaines
+#### Délimiteurs de chaines
 En python, les simple et doubles quotes sont identiques. Ce PEP ne fait aucune recommandations pour ça.
 Prenez une règle et suivez la. Cependant quand une chaine contien une simple ou une double quote, utilisez l'autre pour eviter les anti-slash dans la chaine, ça aide la lisibilité.
 
 
 
-### Commentaires
+#### Commentaires
 
 
 ```python
 """
-# Commentaire 1
-# Commentaire ligne 2
+ Commentaire 1
+ Commentaire ligne 2
 """
 x = x + 1                # Incremente x
 ```
 
-### Conventions de nommages
-Comme le dit le PEP,les conventions de nommages en python sont assez peu précis, pour simplifier ici
-Classe = CamelCase
-variable = snake_case
-CONSTANTE = SNAKE_CASE
-fonction = snake_case
+#### Conventions de nommages
+Comme le dit le PEP,les conventions de nommages en python sont assez peu précise, pour simplifier ici la totalité du code untilisera le snake_case (ou SNAKE_CASE pour les constantes)
 
-les noms de variables l (L minuscule), O (lettre O) et I sont à éviter.
+les noms de variables l (L minuscule), O (lettre o majuscule) et I (lettre i majuscule) sont à éviter car pouvant parfois etre confondue avec 0 et 1.
 pour plus de details, consuleter [la section du PEP0008](https://www.python.org/dev/peps/pep-0008/#naming-conventions)
 
 

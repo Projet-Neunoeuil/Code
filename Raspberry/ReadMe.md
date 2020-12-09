@@ -78,7 +78,7 @@ A noter : En python il n'y a ni acolades, ni point virgule.
 
 `Avec x, y, z, compteur, iterateur : Entier` En python, une variable est instancié dès sa déclaration, donc la clause Avec est fusionné à l'instanciation.
 
-`compteur <- 0` devient compteur = 0 en python.
+`compteur <- 0` devient `compteur = 0` en python.
 
 `Saisir y` devient `y = int(input("Veuillez saisir y : "))` en python. Pour comprendre cette instruction il faut la décomposer :
 - `input()` permet de lire l'entrée standard (la console), il peut prendre un argument qui est le texte affiché à l'utilisateur.

@@ -33,7 +33,7 @@ Début
   Afficher augmenter(x)
 Fin Main
 ```
-et la fonction augmenter_x de cte algorithme :
+et la fonction augmenter_x de cet algorithme :
 ```
 Fonction augmenter_x(x : Entier) retourne Entier
 Début
@@ -79,6 +79,36 @@ fun augmenterX(x:Int):Int {
     return x + 1
   }
 ```
+Maintenant expliquons :
 
-Maitenons décomposons :
-`s`
+A noter : La différence est faites entre `var`et `val`, le premier peut changer et le second ne bouge pas, un peu a la manière du `final` en java. Il n'y a pas non plus de point-virgule.
+
+`Avec x : Entier` devient `var x:Int` en Kotlin.
+
+`compteur <- 0` devient `compteur = 0` en kotlin.
+
+`Saisir y` devient `y = readLine()!!.toInt()` en Kotlin. Pour comprendre cette instruction il faut la décomposer :
+- `readLine()` permet de lire l'entrée standard (la console).
+- `!!` permet d'emettre l'assertion que readLine() est non-null.
+- `toInt()` permet de transformer la valeur obtenue par readLine() en entier.
+
+`Si ... Alors ... Sinon ... FinSi` devient `if (...) { ... } else: { ... }` en kotlin.
+
+`TantQue ... Faire ... FinFaire` devient `while ( ... ) { ... }` en kotlin.
+
+`Pour ... de X à Y Faire ... FinFaire` devient `for ( ... in X..Y ) { ... }` en kotlin.
+
+`Afficher augmenter_x(x)` devient `println(augmenterX(x))` en kotlin.
+
+`fonction nomFonction(nomVar : TypeVar) retourne TypeVar2 Début` devient `fun nomFonction(nowVar;TypeVar):TypeVar2` en kotlin.
+
+`Retourne` devient `return` en kotlin.
+
+___
+
+## Convention
+Les conventions utilisées serons celles du java :
+- variables en camelCase
+- constante en SNAKE_CASE
+- Classes en CamelCase
+la pluspart des autresconventions sont de toute façon gérées par l'IDE quel qu'il soit.

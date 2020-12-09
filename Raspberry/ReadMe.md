@@ -252,10 +252,10 @@ Prenez une règle et suivez la. Cependant quand une chaine contien une simple ou
 
 
 ```python
-"""
- Commentaire 1
- Commentaire ligne 2
-"""
+
+# Commentaire 1
+# Commentaire ligne 2
+
 x = x + 1                # Incremente x
 ```
 

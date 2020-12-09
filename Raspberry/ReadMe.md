@@ -105,7 +105,7 @@ Il s'agit d'une version abrégée...trés abrégée :
 
 Utilisez 4 éspaces par niveau d'indentation
 
-Les lignes continues doivent s'alligner soit en utilisant la jointure implicite de ligne de Python ou le `hanging indent`. Lorsque ce dernier est utiliser, il faut bien prendre en compte ce qui suit :
+Les lignes continues doivent s'alligner soit en utilisant la jointure implicite de ligne de Python ou le `hanging indent`. Lorsque ce dernier est utilisé, il faut bien prendre en compte ce qui suit :
 - Il ne doit pas y avoir d'argument sur la première ligne
 - Une indentation supplémentaire doit être utilisé pour bien être compris comme ligne de continuation (8 espace au lieu de 4)
 
@@ -263,7 +263,6 @@ x = x + 1                # Incremente x
 Comme le dit le PEP,les conventions de nommages en python sont assez peu précise, pour simplifier ici la totalité du code untilisera le snake_case (ou SNAKE_CASE pour les constantes)
 
 les noms de variables l (L minuscule), O (lettre o majuscule) et I (lettre i majuscule) sont à éviter car pouvant parfois etre confondue avec 0 et 1.
-pour plus de details, consuleter [la section du PEP0008](https://www.python.org/dev/peps/pep-0008/#naming-conventions)
 
 
 ___
@@ -273,4 +272,4 @@ Ici iront les commandes utilisées directement en console (non stockées dans de
 
 ___
 ## SQL
-ici iront les différentes requêtes SQL effectuées sur la BD.
+Ici iront les différentes requêtes SQL effectuées sur la BD.

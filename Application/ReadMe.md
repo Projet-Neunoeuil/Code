@@ -111,4 +111,5 @@ Les conventions utilisées serons celles du java :
 - variables en camelCase
 - constante en SNAKE_CASE
 - Classes en CamelCase
+
 la pluspart des autresconventions sont de toute façon gérées par l'IDE quel qu'il soit.

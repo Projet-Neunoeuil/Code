@@ -36,7 +36,7 @@ Début
   Afficher augmenter(x)
 Fin Main
 ```
-et la fonction augmenter_x de cte algorithme :
+et la fonction augmenter_x de cet algorithme :
 ```
 Fonction augmenter_x(x : Entier) retourne Entier
 Début

@@ -42,3 +42,43 @@ Fin augmenter_x
 ```
 
 Et voici le code kottlin correspondant :
+```kotlin
+    var x:Int
+    var y:Int
+    var z:Int
+    val compteur:Int
+    compteur = 0
+    println("Veuillez saisir x : ")
+    x = readLine()!!.toInt()
+    println("Veuillez saisir y : ")
+    y = readLine()!!.toInt()
+    println("Veuillez saisir z : ")
+    z = readLine()!!.toInt()
+    if (x < 5)
+    {
+      x = x - 5
+    }
+    else
+    {
+      while (x > 5)
+      {
+        x = x - 1
+      }
+    }
+    for (i in 0..6)
+    {
+      x = x + y - z
+      y = y + 2 * i
+      z = (z / (i + 1)).toInt()
+    }
+    println(augmenterX(x))
+```
+et la fonction :
+```kotlin
+fun augmenterX(x:Int):Int {
+    return x + 1
+  }
+```
+
+Maitenons décomposons :
+`s`

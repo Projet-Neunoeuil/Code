@@ -72,6 +72,30 @@ def augmenter_x(x):
   return x + 1
 ```
 
+Maintenant expliquons :
+
+A noter : En python il n'y a ni acolades, ni point virgule.
+
+`Avec x, y, z, compteur, iterateur : Entier` En python, une variable est instancié dès sa déclaration, donc la clause Avec est fusionné à l'instanciation.
+
+`compteur <- 0` devient compteur = 0 en python.
+
+`Saisir y` devient `y = int(input("Veuillez saisir y : "))` en python. Pour comprendre cette instruction il faut la décomposer :
+- `input()` permet de lire l'entrée standard (la console), il peut prendre un argument qui est le texte affiché à l'utilisateur.
+- `int()` permet de récupérer la valeur entière de l'argument (dans notre cas c'est une chaine, mais ça pourrait aussi être un réel)
+
+`Si ... Alors ... Sinon ... FinSi` devient `if ...: ... else: ...` en python.
+
+`TantQue ... Faire ... FinFaire` devient `while ...: ...` en python.
+
+`Pour ... de ... à ... Faire ... FinFaire` devient `for ... in range(..., ...): ...` en python.
+
+`Afficher augmenter_x(x)` devient `print(augmenter_x(x))` en python.
+
+`fonction nomFonction(nomVar : TypeVar) retourne TypeVar2 Début` devient `def nomFonction(nomVar):` en python.
+
+`Retourne` devient `return` en python.
+
 ___
 ### Conventions :
 #### Source :

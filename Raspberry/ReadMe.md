@@ -404,5 +404,66 @@ CONSTANTE = SNAKE_CASE
 fonction = snake_case
 
 les noms de variables l, O et I sont à éviter.
+pour plus de details, consuleter [la section du PEP0008](https://www.python.org/dev/peps/pep-0008/#naming-conventions)
 
-...To be continued
+#### Recommandations de code :
+Le code ne doit pas etre écrit pour une implémentation particulière de python, par exemple éviter la concaténation en strin_a = string_a + string_b mais préférer la forme ''.join().
+
+La comparaison a des Singleton tel que None doit être fait avec `is` ou `is not` mais pas avec des `==` ou `!=`
+
+utiliser plutot l'opératour `is not` que `not...is`
+```python
+# Correcte:
+if foo is not None:
+# Incorrecte:
+if not foo is None:
+```
+
+Lors de la mise en œuvre d'opérations de commande avec des comparaisons riches, il est préférable de mettre en œuvre les six opérations (`__eq__`, `__ne__`, `__lt__`, `__le__`, `__gt__`, `__ge__`) plutôt que de se fier à un autre code pour n'exercer qu'une comparaison particulière.
+
+Pour minimiser l'effort nécessaire, le décorateur `functools.total_ordering()` fournit un outil permettant de générer les méthodes de comparaison manquantes.
+
+PEP 207 indique que les règles de réflexivité sont assumées par Python. Ainsi, l'interpréteur peut échanger `y > x` avec `x < y`, `y >= x` avec `x <= y`, et peut échanger les arguments de `x == y` et `x != y`. Les opérations `sort()` et `min()` sont garanties d'utiliser l'opérateur `<` et la fonction `max()` utilise l'opérateur `>`. Toutefois, il est préférable de mettre en œuvre les six opérations afin d'éviter toute confusion dans d'autres contextes.
+
+préferer la forme :
+```python
+def f(x): return 2*x
+```
+à
+```python
+f = lambda x: 2*x
+```
+
+Dériver les exceptions de `Exception` plutôt que de `BaseException`. L'héritage direct de `BaseException` est réservé aux exceptions dont la capture est presque toujours la mauvaise chose à faire.
+
+Concevez des hiérarchies d'exceptions basées sur les distinctions dont le code de capture des exceptions est susceptible d'avoir besoin, plutôt que sur les endroits où les exceptions sont soulevées. Répondre à la question "Qu'est-ce qui a mal tourné ?" par la programmation, plutôt que de se contenter de dire "Un problème s'est produit" (voir PEP 3151 pour un exemple de cette leçon pour la hiérarchie d'exceptions intégrée)
+
+Les conventions d'appellation des classes s'appliquent ici, bien que vous deviez ajouter le suffixe "Error" à vos classes d'exception si l'exception est une erreur. Les exceptions sans erreur qui sont utilisées pour le contrôle de flux non local ou d'autres formes de signalisation n'ont pas besoin de suffixe spécial.
+
+Utilisez le chaînage des exceptions de manière appropriée. En Python 3, `raise X from Y` doit être utilisé pour indiquer un remplacement explicite sans perdre le traceback original.
+
+Lorsque vous remplacez délibérément une exception interne (en utilisant `raise X` en Python 2 ou `raise X from None` en Python 3.3+), assurez-vous que les détails pertinents sont transférés à la nouvelle exception (comme la préservation du nom de l'attribut lors de la conversion de KeyError en AttributeError, ou l'incorporation du texte de l'exception originale dans le nouveau message d'exception).
+
+Lorsque vous créez une exception en Python 2, utilisez `raise ValueError('message')` au lieu de l'ancienne forme `raise ValueError, 'message'`.
+
+Cette dernière forme n'est pas une syntaxe Python 3 légale.
+
+La forme paren-using signifie également que lorsque les arguments d'exception sont longs ou incluent un formatage de chaîne de caractères, vous n'avez pas besoin d'utiliser des caractères de suite de ligne grâce aux parenthèses qui les contiennent.
+
+Lors de la saisie des exceptions, mentionnez des exceptions spécifiques dans la mesure du possible au lieu d'utiliser une simple clause `except` :
+```python
+try:
+    import platform_specific_module
+except ImportError:
+    platform_specific_module = None
+```
+
+Une simple clause `except : ` permet de prendre en compte les exceptions SystemExit et KeyboardInterrupt, ce qui rend plus difficile l'interruption d'un programme avec Control-C, et peut masquer d'autres problèmes. Si vous voulez attraper toutes les exceptions qui signalent des erreurs de programme, utilisez `except Exception :`. (le simple `except :` est équivalent à `except BaseException :`).
+
+Une bonne règle de base consiste à limiter l'utilisation de la simple clauses `except :` à deux cas :
+
+1. Si le gestionnaire d'exceptions imprime ou enregistre le traceback, l'utilisateur sera au moins conscient qu'une erreur s'est produite.
+
+2. Si le code doit faire un travail de nettoyage, mais laisse ensuite l'exception se propager vers le haut avec `raise`. `try...finally` peut être un meilleur moyen de gérer ce cas.
+
+pour plus de recommandations,et la fin, je vous invite à lire [cette section du PEP](https://www.python.org/dev/peps/pep-0008/#programming-recommendations)

@@ -5,9 +5,17 @@ Pour les programmes écrits sur arduino, il ne sera pas complexe d'écrire une d
 
 ___
 ## Python
-Afin de faciliter l'écriture de la documentation, on utilisera le génératuer en ligne XXX (à venir) afin de le faie marcher il faux suivre la syntaxe suivante
+Afin de faciliter l'écriture de la documentation, on utilisera le génératuer Sphinx , son installation est décrite [ici](https://www.sphinx-doc.org/en/master/usage/quickstart.html) afin de le faie marcher nous utiliserons la syntaxe épytext plus proche de la JavaDoc et de la KDoc décrite [ici](http://epydoc.sourceforge.net/epytext.html) voici un exemple tiré de ce site légerement remanié :
 ```python
-Some syntax here
+def example(x):
+    """
+    Fonction déterminant l'entier suivant X.
+    @param x: L'entier pour lequel on
+              on veut obtenir le suivant
+    @type x: entier
+    @return: l'entier suivant directement X
+    """
+    return x + 1
 ```
 
 ___

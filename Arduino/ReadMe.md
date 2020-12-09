@@ -60,7 +60,7 @@ Lorsque le code est important, il peut devenir obligatoire d'ajouter des sous-ro
 Elles doivent absolument être placée **__en dessous__** de la boucle principale.
 
 ## Vérifier le code
-Pour cela, sur l'IDE Arduino rien de plus simple, il y a un bouton `verify` les erreurs apparaitrons dans la console.
+Pour cela, sur l'IDE Arduino rien de plus simple, il y a un bouton `Croquis > Vérifier/Compiler` ou par defaut le raccourci `Ctrl + R` les erreurs apparaitrons dans la console.
 
 ## AutoFormat
-Pour activer/désactiver le formateur automatique il faut aller dans : `Tools > Auto Format`, ou utiliser par défaut le raccourci `... + ...`
+Pour activer/désactiver le formateur automatique il faut aller dans : `Outils > Formatage automatique`, ou utiliser par défaut le raccourci `Ctrl + T`

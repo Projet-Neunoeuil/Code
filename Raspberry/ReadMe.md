@@ -2,8 +2,79 @@
 
 ## Python :
 
+
+Voici un algorithme d'exemple traitant un maximum d'opérations :
+```
+Programme Main
+Début
+  Avec x, y, z, compteur, iterateur : Entier
+       fonction augmenter_x(x : Entier) retourne Entier
+
+  compteur <- 0
+  iterateur <- 0
+
+  Afficher "Saisir x, y et z : "
+  Saisir x
+  Saisir y
+  Saisir z
+
+  Si x < 5 Alors
+    x <- x + 5
+  Sinon
+    Tant que x > 5 Faire
+      x <- x - 1
+    FinFaire
+  FinSi
+
+  Pour iterateur de 0 à 6 Faire
+    x <- x + y - z
+    y <- y + 2 * iterateur
+    z <- z / (iterateur + 1) //<- ceci doit être un entier
+  FinFaire
+  
+  Afficher augmenter(x)
+Fin Main
+```
+et la fonction augmenter_x de cte algorithme :
+```
+Fonction augmenter_x(x : Entier) retourne Entier
+Début
+  Retourne x + 1
+Fin augmenter_x
+```
+
+Voici le code python correspondant:
+```python
+x = int(input("Veuillez saisir x : "))
+y = int(input("Veuillez saisir y : "))
+z = int(input("Veuillez saisir z : "))
+compteur = 0
+iterateur = 0
+
+if x < 5:
+    x = x + 5
+else:
+    while x > 5:
+        x = x - 1
+
+for iterateur in range(0,6):
+  x = x+y - z
+  y = y + 2*iterateur
+  z = int(z / (iterateur + 1))
+  
+
+print(augmenter_x(x))
+```
+et la fonction augmenter_x :
+```python
+def augmenter_x(x):
+  return x + 1
+```
+
+___
+
 ### Source :
-Les convontions cités viennent surtout du [PEP - 0008](https://www.python.org/dev/peps/pep-0008/).
+Les conventions cités viennent surtout du [PEP - 0008](https://www.python.org/dev/peps/pep-0008/).
 Il s'agit grossièrement d'une traduction.
 
 ### Indentation
@@ -467,3 +538,13 @@ Une bonne règle de base consiste à limiter l'utilisation de la simple clauses 
 2. Si le code doit faire un travail de nettoyage, mais laisse ensuite l'exception se propager vers le haut avec `raise`. `try...finally` peut être un meilleur moyen de gérer ce cas.
 
 pour plus de recommandations,et la fin, je vous invite à lire [cette section du PEP](https://www.python.org/dev/peps/pep-0008/#programming-recommendations)
+
+
+___
+
+## Linux
+Ici iront les commandes utilisées directement en console (non stockées dans des scripts .sh) afin de configurer la carte raspberry comme serveur LAMP et de le sécuriser
+
+___
+## SQL
+ici iront les différentes requêtes SQL effectuées sur la BD.

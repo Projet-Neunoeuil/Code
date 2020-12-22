@@ -268,7 +268,11 @@ les noms de variables l (L minuscule), O (lettre o majuscule) et I (lettre i maj
 ___
 
 ## Linux
-Ici iront les commandes utilisées directement en console (non stockées dans des scripts .sh) afin de configurer la carte raspberry comme serveur LAMP et de le sécuriser
+Avant de commencer à installer quoi que ce soit, il faut mettre à jour les paquets :
+```shell
+> apt-get update -y
+> apt-get upgrade -y
+```
 
 ___
 ## SQL

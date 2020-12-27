@@ -333,7 +333,7 @@ Et pour MAriaDB :
 
  Note : Maintenant pour se connecter il faut faire `ssh user@ip -p 8700`
 
- Pour finir créons l'utilisateur que l'application utilisera sur mariaDB, ses droits seront gérés sur la partie SQL.
+ Pour finir créons l'utilisateur que l'application utilisera sur mariaDB.
 
  D'abord connections nous en root :
  ```shell
@@ -346,6 +346,7 @@ Et pour MAriaDB :
  CREATE DATABASE Application;
  GRANT ALL PRIVILEGES ON Application.* TO 'Appli'@'%' WITH GRANT OPTION;
 ```
+A noter ici que le % veux dire depuis n'importe quelle IP (ne connaissant pas l'adresse iP du telephone utilisé et celle ci pouvant évoluer), et que le Application.* veux dire que l'a pplication a tous les droits sur l'entiereté de la base de données Application.
 ___
 ## SQL
 Ici iront les différentes requêtes SQL effectuées sur la BD.

@@ -329,9 +329,23 @@ Et pour MAriaDB :
  editons `/etc/ssh/sshd_config` :
 
  - On interdit la connection en "root" `PermitRootLogin no`
- - On change le port en mettant par exemple 87005 `Port 8700` (cela change les règles du pare-feu)
+ - On change le port en mettant par exemple 8700 `Port 8700` (cela change les règles du pare-feu)
 
  Note : Maintenant pour se connecter il faut faire `ssh user@ip -p 8700`
+
+ Pour finir créons l'utilisateur que l'application utilisera sur mariaDB, ses droits seront gérés sur la partie SQL.
+
+ D'abord connections nous en root :
+ ```shell
+ mysql -u root -p
+ ```
+ Et créons l'utilisateur Appli ayant un mot de passe de préférence fort, une base de donnée et on donnera les droits, ici nous utiliserons pour l'exemple `#M0td3p@553`.
+
+`̀``SQL
+ CREATE USER 'Appli'@'%' IDENTIFIED BY '#M0td3p@553';
+ CREATE DATABASE Application;
+ GRANT ALL PRIVILEGES ON Application.* TO 'Appli'@'%' WITH GRANT OPTION;
+```
 ___
 ## SQL
 Ici iront les différentes requêtes SQL effectuées sur la BD.

@@ -341,11 +341,13 @@ Et pour MAriaDB :
  ```
  Et créons l'utilisateur Appli ayant un mot de passe de préférence fort, une base de donnée et on donnera les droits, ici nous utiliserons pour l'exemple `#M0td3p@553`.
 
-`̀``SQL
- CREATE USER 'Appli'@'%' IDENTIFIED BY '#M0td3p@553';
- CREATE DATABASE Application;
- GRANT ALL PRIVILEGES ON Application.* TO 'Appli'@'%' WITH GRANT OPTION;
+
+```sql
+CREATE USER 'Appli'@'%' IDENTIFIED BY '#M0td3p@553';
+CREATE DATABASE Application;
+GRANT ALL PRIVILEGES ON Application.* TO 'Appli'@'%' WITH GRANT OPTION;
 ```
+
 A noter ici que le % veux dire depuis n'importe quelle IP (ne connaissant pas l'adresse iP du telephone utilisé et celle ci pouvant évoluer), et que le Application.* veux dire que l'a pplication a tous les droits sur l'entiereté de la base de données Application.
 ___
 ## SQL

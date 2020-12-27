@@ -32,7 +32,7 @@ Début
     y <- y + 2 * iterateur
     z <- z / (iterateur + 1) //<- ceci doit être un entier
   FinFaire
-  
+
   Afficher augmenter(x)
 Fin Main
 ```
@@ -62,7 +62,7 @@ for iterateur in range(0,6):
   x = x+y - z
   y = y + 2*iterateur
   z = int(z / (iterateur + 1))
-  
+
 
 print(augmenter_x(x))
 ```
@@ -153,8 +153,8 @@ if (this_is_one_thing and
     do_something()
 
 # Indentation supplémentaire
-if (this_is_one_thing 
-        and that_is_another_thing): 
+if (this_is_one_thing
+        and that_is_another_thing):
     do_something ()
 
 ```
@@ -260,7 +260,7 @@ x = x + 1                # Incremente x
 ```
 
 #### Conventions de nommages
-Comme le dit le PEP,les conventions de nommages en python sont assez peu précise, pour simplifier ici la totalité du code untilisera le snake_case (ou SNAKE_CASE pour les constantes)
+Comme le dit le PEP,les conventions de nommages en python sont assez peu précise, pour simplifier ici la totalité du code utilisera le snake_case (ou SNAKE_CASE pour les constantes)
 
 les noms de variables l (L minuscule), O (lettre o majuscule) et I (lettre i majuscule) sont à éviter car pouvant parfois etre confondue avec 0 et 1.
 
@@ -273,7 +273,65 @@ Avant de commencer à installer quoi que ce soit, il faut mettre à jour les paq
 > apt-get update -y
 > apt-get upgrade -y
 ```
+Ensuite, nous ajoutons le paquet git afin de versionner facilement :
+```shell
+> apt-get install git
+```
+Une dernière étape préparatoire : nous allons créer un utilisateur spécialement pour gérer LAMP : lm pour LAMP Manager, puis donnons lui les droits pour "sudo" avant de se connecter sur ce compte.
+```shell
+> adduser lm
+> usermod -aG sudo lm
+> su - lm
+```
+Maintenant nous pouvons installer le stack LAMP (Linux Apache MySQL/MariaDB PHP)
 
+1èrement installons apache et sa documentation, puis une fois l'installation terminée, en vérifier le fonctionnement :
+```shell
+> sudo apt-get install apache2 apache2-doc
+> sudo serviceapache2 status
+```
+La page http://ip_raspy/ est accessible depuis n'importe où, problème de sécurité que nous gérerons plus tard, pour l'instant concentrons nous sur l’installation. il manque encore php et maria db
+
+Pour PHP :
+```shell
+> sudo apt-get install php7.3
+```
+Et pour MAriaDB :
+
+```shell
+> sudo apt-get install mariadb-server
+```
+ Maintenant, sécurisons tout ça , en commençant par l'iptables, le tout sera détaillé dans un fichier firewall.sh, je ne met que deux commandes ici :
+ ```shell
+> sudo iptables -P INPUT DROP
+> sudo iptables -P FORWARD DROP
+ ```
+ Ce pare-feu permet d'avoir une défense basique, empêchant les paquets non autorisés d'entrer, et pourra être modifié a volonté afin de rendre plus ou moins strictes les limitations. Passons a la configuration de maria db (je marquerais aussi ce que ressortent les commandes ici):
+ ```shell
+> mysql_secure_installation
+    enter current password for root :
+    Change the root password? [Y/n] : Y
+      New password :
+      Re-enter new password :
+    Remove anonymous users? [Y:n] : Y
+    Disallow root login remotely?[Y:n] : Y
+    Remove test database and access to it? [Y/n] : Y
+    Reload privilege table now? [Y/n] : Y
+ ```
+ Il s'agit encore d'une sécurisation basique mais cela evite déjà quelques soucis. Pour l'instant seul root existe sur mariadb, mais nous créerons un utilisateur plus tard.
+
+ Nous allons installer PHPMyAdmin afin de gérer plus facilement la base de données :
+ ```shell
+  > sudo apt-get install phpmyadmin
+ ```
+
+ Maintenant que tout est configuré nous allons limiter l'accès SSH et changer le port, cela limite déjà des attaques basiques.
+ editons `/etc/ssh/sshd_config` :
+
+ - On interdit la connection en "root" `PermitRootLogin no`
+ - On change le port en mettant par exemple 87005 `Port 8700` (cela change les règles du pare-feu)
+
+ Note : Maintenant pour se connecter il faut faire `ssh user@ip -p 8700`
 ___
 ## SQL
 Ici iront les différentes requêtes SQL effectuées sur la BD.

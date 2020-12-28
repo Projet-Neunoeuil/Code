@@ -301,6 +301,33 @@ Et pour MAriaDB :
 ```shell
 > sudo apt-get install mariadb-server
 ```
+
+Nous allons installer PHPMyAdmin afin de gérer plus facilement la base de données :
+```shell
+ > sudo apt-get install phpmyadmin
+```
+Cette commande ne marche pas sur la config de base raspberry etant donné que le paquet phpmyadmin a été supprimé de debian 10, nous pouvons soit installer avec wget, mais je prèfère rajouter les source de debian9 afin de rester simple. il faux donc ajouter dans `/etc/apt/source.list` :
+
+```shell
+deb http://deb.debian.org/debian/ stretch main contrib non-free
+deb http://security.debian.org/ stretch main/updates contrib non-free
+deb http://deb.debian.org/debian/ stretch main-updates contrib non-free
+
+deb-src http://deb.debian.org/debian/ stretch main contrib non-free
+deb-src http://security.debian.org/  stretch main/updates contrib non-free
+deb-src http://deb.debian.org/debian/ stretch main-updates contrib non-free
+```
+
+
+Puis on doit configurer apache pour accedzer a PHPMyAdmin.
+
+Ajoutons dans le fichier `/etc/apache2/apache2.conf` les lignes
+```shell
+#Include phpMyAdmin
+Include /etc/phpmyadmin/apache.conf
+```
+puis redemarer le service avec `sudo service apache2 restart`.
+
  Maintenant, sécurisons tout ça , en commençant par l'iptables, le tout sera détaillé dans un fichier firewall.sh, je ne met que deux commandes ici :
  ```shell
 > sudo iptables -P INPUT DROP
@@ -320,10 +347,7 @@ Et pour MAriaDB :
  ```
  Il s'agit encore d'une sécurisation basique mais cela evite déjà quelques soucis. Pour l'instant seul root existe sur mariadb, mais nous créerons un utilisateur plus tard.
 
- Nous allons installer PHPMyAdmin afin de gérer plus facilement la base de données :
- ```shell
-  > sudo apt-get install phpmyadmin
- ```
+
 
  Maintenant que tout est configuré nous allons limiter l'accès SSH et changer le port, cela limite déjà des attaques basiques.
  editons `/etc/ssh/sshd_config` :
@@ -346,9 +370,42 @@ Et pour MAriaDB :
 CREATE USER 'Appli'@'%' IDENTIFIED BY '#M0td3p@553';
 CREATE DATABASE Application;
 GRANT ALL PRIVILEGES ON Application.* TO 'Appli'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 ```
 
 A noter ici que le % veux dire depuis n'importe quelle IP (ne connaissant pas l'adresse iP du telephone utilisé et celle ci pouvant évoluer), et que le Application.* veux dire que l'a pplication a tous les droits sur l'entiereté de la base de données Application.
+
+
+Maintenant, nous allons aussi programmer une verification automatique de mise à jour le script `auto-updater.sh` est dans le repertoire `/home/cs/`.
+nous devons faire :
+```shell
+chmod +x auto-updater.sh
+crontab -e
+```
+dans le fichier ouvert ajouter :
+`@daily (ou @weekly) sh /home/cs/auto-updater.sh`
+`@daily` le fera tous les jours à 0h00, et `@weekly` le fera tous les lundis à 0h00.
+
+pour que le pare-feu soit actif, il doit être dans le dossier `/etc/init.d`,
+puis editer le fichier `/lib/systemd/system/iptables.service` et y mettre :
+```shell
+[Service]
+Description=Pare Feu Iptable
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/init.d/firewall.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+et pour finir tapper cette succession de commandes :
+```shell
+> systemctl enable iptables.service
+> systemcrl start iptables.service
+# Nous pouvons controller avec :
+> systemctl status iptables.service
+```
 ___
 ## SQL
 Ici iront les différentes requêtes SQL effectuées sur la BD.

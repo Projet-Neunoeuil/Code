@@ -359,7 +359,7 @@ puis redemarer le service avec `sudo service apache2 restart`.
 
  Pour finir créons l'utilisateur que l'application utilisera sur mariaDB.
 
- D'abord connections nous en root :
+ D'abord connectons nous en root :
  ```shell
  mysql -u root -p
  ```

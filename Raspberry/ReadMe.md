@@ -288,9 +288,9 @@ Maintenant nous pouvons installer le stack LAMP (Linux Apache MySQL/MariaDB PHP)
 1èrement installons apache et sa documentation, puis une fois l'installation terminée, en vérifier le fonctionnement :
 ```shell
 > sudo apt-get install apache2 apache2-doc
-> sudo serviceapache2 status
+> sudo service apache2 status
 ```
-La page http://ip_raspy/ est accessible depuis n'importe où, problème de sécurité que nous gérerons plus tard, pour l'instant concentrons nous sur l’installation. il manque encore php et maria db
+La page http://localhost/ (ou remplacer "localhost" par l'ip de la raspberry si on est pas sur la raspberry) est accessible depuis n'importe où, problème de sécurité que nous gérerons plus tard, pour l'instant concentrons nous sur l’installation. il manque encore php et maria db
 
 Pour PHP :
 ```shell
@@ -355,7 +355,7 @@ puis redemarer le service avec `sudo service apache2 restart`.
  - On interdit la connection en "root" `PermitRootLogin no`
  - On change le port en mettant par exemple 8700 `Port 8700` (cela change les règles du pare-feu)
 
- Note : Maintenant pour se connecter il faut faire `ssh user@ip -p 8700`
+ Note : Maintenant pour se connecter il faut faire `ssh user@ip -p 8700` où "user" represtente le nom d'utilisateur, et "ip" l'adresse ip de la raspberry
 
  Pour finir créons l'utilisateur que l'application utilisera sur mariaDB.
 
@@ -402,7 +402,7 @@ WantedBy=multi-user.target
 et pour finir tapper cette succession de commandes :
 ```shell
 > systemctl enable iptables.service
-> systemcrl start iptables.service
+> systemctl start iptables.service
 # Nous pouvons controller avec :
 > systemctl status iptables.service
 ```

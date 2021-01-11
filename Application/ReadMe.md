@@ -113,3 +113,8 @@ Les conventions utilisées serons celles du java :
 - Classes en CamelCase
 
 la pluspart des autres conventions sont de toute façon gérées par l'IDE quel qu'il soit.
+___
+## Apparence
+En suivant la charte graphique, voici l'aparence de l'application souhaitée :
+
+![Appli-preview](https://github.com/Projet-Neunoeuil/Code/blob/main/Application/appli-preview.png?raw=true)

@@ -20,7 +20,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
-c/*lass MainActivity : AppCompatActivity() {
+/*class MainActivity : AppCompatActivity() {
     var sum=0
 
     override fun onCreate(savedInstanceState: Bundle?) {

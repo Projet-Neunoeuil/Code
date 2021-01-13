@@ -1,7 +1,10 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.ImageButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -17,10 +20,17 @@ import androidx.appcompat.widget.Toolbar
 class MainActivity2 : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-
+    var btn: ImageButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+        btn = findViewById<View>(R.id.imageThermo) as ImageButton
+        btn!!.setOnClickListener {
+            val i = Intent(this@MainActivity2, Temperatures::class.java)
+            startActivity(i)
+        }
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

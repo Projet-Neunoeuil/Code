@@ -17,4 +17,40 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:textColor="@color/orange"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageThermo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@color/fond"
+        android:foreground="@drawable/thermometre"
+        android:tint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.389"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/thermometre" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:background="@color/fond"
+        android:foreground="@drawable/ampoule"
+        app:layout_constraintEnd_toEndOf="@+id/imageThermo"
+        app:layout_constraintStart_toStartOf="@+id/imageThermo"
+        app:layout_constraintTop_toBottomOf="@+id/imageThermo"
+        app:srcCompat="@drawable/ampoule" />
 </androidx.constraintlayout.widget.ConstraintLayout>

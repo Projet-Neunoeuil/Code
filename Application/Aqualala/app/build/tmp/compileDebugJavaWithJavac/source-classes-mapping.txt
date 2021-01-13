@@ -1,0 +1,2 @@
+fr/unilim/iut/aqualala/BuildConfig.java
+ fr.unilim.iut.aqualala.BuildConfig

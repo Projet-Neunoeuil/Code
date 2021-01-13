@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
+ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
 MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\41361b9f7b46ed6e014dbe34eeefad87\jetified-core-ktx-1.3.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\510c987a74b26e0d326e9880d2cc3fe0\material-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\74d3dfb417b8176313f67b6d530795eb\constraintlayout-2.0.4\AndroidManifest.xml:2:1-11:12
@@ -33,20 +33,20 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\dell\.gradle\
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\416c3602f83ec574991e5bd9eab8a865\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0e939b520824d323d350ca62540c13c1\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\c1bc2009ed393c1281f28af6bb79c366\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
 	package
 		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:3:5-37
 		INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml
-		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
 		INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml
-		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:1-22:12
 		INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:2:11-69
@@ -88,6 +88,10 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:16:17-77
 	android:name
 		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:16:27-74
+uses-permission#android.permission.INTERNET
+ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:20:22-64
 uses-sdk
 INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml

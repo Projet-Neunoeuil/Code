@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tv_hello.setOnClickListener {
             Thread(Runnable {
-                val sql = "SELECT * FROM users"
+                val sql = "SELECT value FROM Temperature"
                 mysqlConnection(sql)
-            }).start()
+           }).start()
         }
     }
 
@@ -41,12 +41,13 @@ class MainActivity : AppCompatActivity() {
             //加载驱动
             Class.forName("com.mysql.jdbc.Driver")
             //建立连接
-            cn = DriverManager.getConnection("jdbc:mysql://39.99.141.184:3306/jdbc",
-                "ccsu", "123456")
+            Log.d("****************************connnexion*****************************","****************************connnexion*****************************")
+            cn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/neunoeiltest",
+                "appli1", "#M0td3p@553")
             val ps = cn.createStatement()
             val resultSet = ps!!.executeQuery(sql)
             while (resultSet.next()) {
-                Log.d("mysqlConnection: " , resultSet.getString("id") +
+                Log.d("*****************************mysqlConnection: " , resultSet.getString("id") +
                         resultSet.getString("name") +
                         resultSet.getString("password")+resultSet.getString("email"))
             }

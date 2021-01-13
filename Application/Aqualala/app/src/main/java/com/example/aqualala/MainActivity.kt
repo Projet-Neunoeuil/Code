@@ -41,13 +41,13 @@ class MainActivity : AppCompatActivity() {
             //加载驱动
             Class.forName("com.mysql.jdbc.Driver")
             //建立连接
-            Log.d("****************************connnexion*****************************","****************************connnexion*****************************")
+            Log.d("connnexion","****************************connnexion*****************************")
             cn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/neunoeiltest",
                 "appli1", "#M0td3p@553")
             val ps = cn.createStatement()
             val resultSet = ps!!.executeQuery(sql)
             while (resultSet.next()) {
-                Log.d("*****************************mysqlConnection: " , resultSet.getString("id") +
+                Log.d("mysqlConnection: " , resultSet.getString("id") +
                         resultSet.getString("name") +
                         resultSet.getString("password")+resultSet.getString("email"))
             }

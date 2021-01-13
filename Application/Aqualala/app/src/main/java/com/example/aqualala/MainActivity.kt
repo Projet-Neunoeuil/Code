@@ -1,20 +1,11 @@
+
+
 package com.example.aqualala
 
-/*
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-}*/
-
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.sql.*
 
@@ -23,17 +14,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        afficherResultat.setOnClickListener {
-            Thread(Runnable {
+        var resultatAffiche: TextView = findViewById(R.id.renvois)
+        var bouton: Button = findViewById(R.id.afficherResultat)
+        bouton.setOnClickListener {
                 val sql = "SELECT * FROM Temperature;"
-                mysqlConnection(sql)
-            }).start()
+            resultatAffiche.text=mysqlConnection(sql)
         }
     }
 
-    fun mysqlConnection(sql: String) {
+    fun mysqlConnection(sql: String) : String? {
         var cn: Connection
+        var renv: String? = ""
 
         try {
             Class.forName("com.mysql.jdbc.Driver")//Définir le système de démarrage de MySQL
@@ -43,14 +34,9 @@ class MainActivity : AppCompatActivity() {
             )//Etablir la connexion
 
             var stmt = cn.createStatement()//Réaliser Statement pour exécuter le requete SQL
-            var resultSet = stmt!!.executeQuery(sql)//Recevoir le résultat
-            while (resultSet.next()) {//Afficher
-                Log.d(
-                    "mysqlConnection: ", resultSet.getString(1) + " " +
-                            resultSet.getString(2) + " " +
-                            resultSet.getString(3) + " " + resultSet.getString(4)
-                )
-                println(resultSet.getString(1))
+            var resultat = stmt!!.executeQuery(sql)//Recevoir le résultat
+            while (resultat.next()) {//Afficher
+                renv += """+${resultat.getString(1)}${resultat.getString(2)}"""
             }
             if (stmt != null) {
                 stmt!!.close()
@@ -65,5 +51,6 @@ class MainActivity : AppCompatActivity() {
             //handle any errors
             ex.printStackTrace()
         }
+        return renv
     }
 }

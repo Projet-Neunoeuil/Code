@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/resultat"
+        android:id="@+id/renvois"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Renvois de bases de données"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.182"
@@ -22,10 +22,10 @@
         android:id="@+id/afficherResultat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/resultat"
-        app:layout_constraintTop_toBottomOf="@+id/resultat" />
+        android:layout_marginTop="88dp"
+        android:text="@string/button"
+        app:layout_constraintStart_toEndOf="@+id/renvois"
+        app:layout_constraintTop_toBottomOf="@+id/renvois" />
 
     <TextView
         android:id="@+id/messageErreur"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="87dp"
-        android:text="TextView"
+        android:text="@string/textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

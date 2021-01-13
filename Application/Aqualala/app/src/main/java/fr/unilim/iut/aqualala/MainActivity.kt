@@ -13,8 +13,8 @@ import java.lang.Exception
 import java.sql.DriverManager
 
 class MainActivity : AppCompatActivity() {
-    var text: TextView? = null
-    var errorText: TextView? = null
+    var texte: TextView? = null
+    var msgErreur: TextView? = null
     var show: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,40 +22,40 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //propriétés
-        text = findViewById<View>(R.id.textView) as TextView
-        errorText = findViewById<View>(R.id.textView2) as TextView
+        texte = findViewById<View>(R.id.textView) as TextView
+        msgErreur = findViewById<View>(R.id.textView2) as TextView
         show = findViewById<View>(R.id.button) as Button
         show!!.setOnClickListener { Async().execute() }
     }
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
         var donnees = ""
-        var error = ""
+        var erreur = ""
 
         override fun doInBackground(vararg params: Void?): Void? {
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance()
-                val connection = DriverManager.getConnection(
+                val connexion = DriverManager.getConnection(
                     //jdbc:mysql://<IP>:<port>/<nom de la base>
                         "jdbc:mysql://193.26.21.39:3306/Application",
                         "Appli",
                         "#M0td3p@553"
                 )
-                val statement = connection.createStatement()
+                val etat = connexion.createStatement()
                 //récupération de données
-                val resultSet = statement.executeQuery("SELECT * FROM Parametters")
+                val resultSet = etat.executeQuery("SELECT * FROM Temperature")
                 while (resultSet.next()) {
-                    donnees += """${resultSet.getString(1)} ${resultSet.getString(2)}"""
+                    donnees += "${resultSet.getString("value")} ${resultSet.getString("time")} ${resultSet.getBoolean("inRange")} \n"
                 }
             } catch (e: Exception) {
-                error = e.toString()
+                erreur = e.toString()
             }
             return null
         }
 
         override fun onPostExecute(aVoid: Void?) {
-            text!!.text = donnees
-            if (error !== "") errorText!!.text = error
+            texte!!.text = donnees
+            if (erreur !== "") msgErreur!!.text = erreur
             super.onPostExecute(aVoid)
         }
     }

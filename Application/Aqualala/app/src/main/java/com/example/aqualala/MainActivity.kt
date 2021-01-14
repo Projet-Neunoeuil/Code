@@ -1,24 +1,31 @@
-
-
 package com.example.aqualala
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import android.os.StrictMode
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
-import java.sql.*
+import androidx.appcompat.app.AppCompatActivity
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.SQLException
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        if (Build.VERSION.SDK_INT > 9) {
+            val policy =
+                StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
         var resultatAffiche: TextView = findViewById(R.id.renvois)
         var bouton: Button = findViewById(R.id.afficherResultat)
         bouton.setOnClickListener {
+            Thread(Runnable {
                 val sql = "SELECT * FROM Temperature;"
-            resultatAffiche.text=mysqlConnection(sql)
+                resultatAffiche.text=mysqlConnection(sql)
+            }).start()
         }
     }
 
@@ -46,10 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
         } catch (ex: SQLException) {
             //handle any errors
-            ex.printStackTrace()
+            return ex.toString()
         } catch (ex: Exception) {
             //handle any errors
-            ex.printStackTrace()
+            return ex.toString()
         }
         return renv
     }

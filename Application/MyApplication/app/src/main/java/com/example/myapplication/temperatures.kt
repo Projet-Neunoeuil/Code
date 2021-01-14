@@ -6,6 +6,6 @@ import android.os.Bundle
 class Temperatures : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_temperatures)
+        setContentView(R.layout.fragment_temperature)
     }
 }

@@ -31,6 +31,12 @@ class MainActivity2 : AppCompatActivity() {
             val i = Intent(this@MainActivity2, Temperatures::class.java)
             startActivity(i)
         }
+        btn = findViewById<View>(R.id.imageLumiere) as ImageButton
+        btn!!.setOnClickListener {
+            val i = Intent(this@MainActivity2, Eclairage::class.java)
+            startActivity(i)
+        }
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -46,7 +52,7 @@ class MainActivity2 : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_temperature, R.id.nav_eclairage
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

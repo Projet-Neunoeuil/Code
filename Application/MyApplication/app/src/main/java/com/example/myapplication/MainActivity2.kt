@@ -20,19 +20,19 @@ import androidx.appcompat.widget.Toolbar
 class MainActivity2 : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    var btn: ImageButton? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
-        btn = findViewById<View>(R.id.imageThermo) as ImageButton
-        btn!!.setOnClickListener {
+        val btn = findViewById<View>(R.id.imageThermo) as ImageButton
+        btn.setOnClickListener {
             val i = Intent(this@MainActivity2, Temperatures::class.java)
             startActivity(i)
         }
-        btn = findViewById<View>(R.id.imageLumiere) as ImageButton
-        btn!!.setOnClickListener {
+        val btn1 = findViewById<View>(R.id.imageLumiere) as ImageButton
+        btn1.setOnClickListener {
             val i = Intent(this@MainActivity2, Eclairage::class.java)
             startActivity(i)
         }

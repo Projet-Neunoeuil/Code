@@ -12,20 +12,16 @@ import com.example.myapplication.R
 
 class GalleryFragment : Fragment() {
 
-    private lateinit var temperatureViewModel: TemperatureViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        temperatureViewModel =
-            ViewModelProvider(this).get(TemperatureViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_temperature, container, false)
         val textView: TextView = root.findViewById(R.id.textView2)
-        temperatureViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
         return root
     }
 }

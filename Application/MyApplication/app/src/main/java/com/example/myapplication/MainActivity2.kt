@@ -25,18 +25,18 @@ class MainActivity2 : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
-        val btn = findViewById<View>(R.id.imageThermo) as ImageButton
+        setContentView(R.layout.fragment_home)
+        val btn : ImageButton = findViewById<View>(R.id.imageThermo) as ImageButton
         btn.setOnClickListener {
             val i = Intent(this@MainActivity2, Temperatures::class.java)
             startActivity(i)
         }
-        val btn1 = findViewById<View>(R.id.imageLumiere) as ImageButton
+        val btn1 :ImageButton = findViewById<View>(R.id.imageLumiere) as ImageButton
         btn1.setOnClickListener {
             val i = Intent(this@MainActivity2, Eclairage::class.java)
             startActivity(i)
         }
-
+        setContentView(R.layout.activity_main2)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

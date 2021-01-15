@@ -1,9 +1,12 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -16,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -25,6 +29,12 @@ class MainActivity2 : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
+            window.statusBarColor = ContextCompat.getColor(this,R.color.orange); //status bar or the time bar at the top
+        }
+
         setContentView(R.layout.fragment_home)
         val btn : ImageButton = findViewById<View>(R.id.imageThermo) as ImageButton
         btn.setOnClickListener {

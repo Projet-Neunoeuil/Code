@@ -23,14 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         //propriétés
         texte = findViewById<View>(R.id.textView) as TextView
-        msgErreur = findViewById<View>(R.id.textView2) as TextView
-        show = findViewById<View>(R.id.button) as Button
-        show!!.setOnClickListener { Async().execute() }
+        Async().execute()
     }
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
         var donnees = ""
-        var erreur = ""
 
         override fun doInBackground(vararg params: Void?): Void? {
             try {
@@ -44,18 +41,17 @@ class MainActivity : AppCompatActivity() {
                 val etat = connexion.createStatement()
                 //récupération de données
                 val resultSet = etat.executeQuery("SELECT * FROM Temperature")
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     donnees += "${resultSet.getString("value")} ${resultSet.getString("time")} ${resultSet.getBoolean("inRange")} \n"
                 }
             } catch (e: Exception) {
-                erreur = e.toString()
+                donnees = e.toString()
             }
             return null
         }
 
         override fun onPostExecute(aVoid: Void?) {
             texte!!.text = donnees
-            if (erreur !== "") msgErreur!!.text = erreur
             super.onPostExecute(aVoid)
         }
     }

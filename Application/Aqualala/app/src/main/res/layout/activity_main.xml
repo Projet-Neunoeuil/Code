@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/renvois"
+        android:id="@+id/affichage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Renvois de bases de données"
@@ -19,14 +19,14 @@
         app:layout_constraintVertical_bias="0.151" />
 
     <Button
-        android:id="@+id/afficherResultat"
+        android:id="@+id/bouton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="92dp"
         android:text="@string/button"
-        app:layout_constraintStart_toStartOf="@+id/renvois"
-        app:layout_constraintTop_toBottomOf="@+id/renvois" />
+        app:layout_constraintStart_toStartOf="@+id/affichage"
+        app:layout_constraintTop_toBottomOf="@+id/affichage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

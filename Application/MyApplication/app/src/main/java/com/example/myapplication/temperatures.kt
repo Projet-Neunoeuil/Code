@@ -31,8 +31,8 @@ class Temperatures : AppCompatActivity() {
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
         var temper = ""
-        var vali = ""
-        var tem = true
+        var tem= ""
+        var vali = true
         var erreur = ""
 
         override fun doInBackground(vararg params: Void?): Void? {
@@ -49,8 +49,8 @@ class Temperatures : AppCompatActivity() {
                 val resultatRecup = etat.executeQuery("SELECT * FROM Temperature")
                 if (resultatRecup.next()) {
                     temper = "${resultatRecup.getString("value")} "
-                    vali=  "${resultatRecup.getString("time")}"
-                    tem= resultatRecup.getBoolean("inRange")
+                    tem =  "${resultatRecup.getString("time")}"
+                    vali = resultatRecup.getBoolean("inRange")
                 }
             } catch (e: Exception) {
                 erreur = e.toString()
@@ -61,11 +61,11 @@ class Temperatures : AppCompatActivity() {
         override fun onPostExecute(aVoid: Void?) {
             if(erreur !== "") msgErreur!!.text=erreur
             temperature!!.text = temper
-            valide!!.text = vali
-            if(tem == true){
-                temps!!.text ="La température est idéale"
+            temps!!.text = tem
+            if (vali == true){
+                valide!!.text ="La température est idéale"
             } else {
-                temps!!.text ="La température est anormalement élevée"
+                valide!!.text ="La température est anormalement élevée"
             }
             super.onPostExecute(aVoid)
         }

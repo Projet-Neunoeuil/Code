@@ -15,15 +15,6 @@
         tools:layout_editor_absoluteY="216dp"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="368dp"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

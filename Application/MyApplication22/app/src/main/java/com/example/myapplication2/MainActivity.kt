@@ -9,28 +9,33 @@ import java.lang.Exception
 import java.sql.DriverManager
 
 class MainActivity : AppCompatActivity() {
-    var temperature: TextView? = null
-    var valide: TextView? = null
-    var temps: TextView? = null
-    var msgErreur: TextView? = null
+    var temperatureView: TextView? = null
+    var valideView: TextView? = null
+    var tempsView: TextView? = null
+    var msgErreurView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //propriétés
-        temperature = findViewById<View>(R.id.temperatureValeur) as TextView
-        valide = findViewById<View>(R.id.temperatureValide) as TextView
-        temps = findViewById<View>(R.id.temperatureTemps) as TextView
-        msgErreur = findViewById<View>(R.id.temperatureValeur) as TextView
+        initView()
         Async().execute()
+    }
+
+    //Initialiser les views
+    private fun initView(){
+        //propriétés
+        temperatureView = findViewById<View>(R.id.temperatureValeur) as TextView
+        valideView = findViewById<View>(R.id.temperatureValide) as TextView
+        tempsView = findViewById<View>(R.id.temperatureTemps) as TextView
+        msgErreurView = findViewById<View>(R.id.temperatureValeur) as TextView
+
     }
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
         var temper = ""
         var tem= ""
         var vali = true
-        var erreur = ""
+        var erreurDesDonnees = ""
 
         override fun doInBackground(vararg params: Void?): Void? {
             try {
@@ -50,19 +55,19 @@ class MainActivity : AppCompatActivity() {
                     vali = resultatRecup.getBoolean("inRange")
                 }
             } catch (e: Exception) {
-                erreur = e.toString()
+                erreurDesDonnees = e.toString()
             }
             return null
         }
 
         override fun onPostExecute(aVoid: Void?) {
-            if(erreur !== "") msgErreur!!.text=erreur
-            temperature!!.text = temper+" °c"
-            temps!!.text = tem
+            if(erreurDesDonnees !== "") msgErreurView!!.text=erreurDesDonnees
+            temperatureView!!.text = temper+" °C"
+            tempsView!!.text = tem
            if (vali == true){
-                valide!!.text ="La température est idéale"
+                valideView!!.text ="La température est idéale"
             } else {
-                valide!!.text ="La température est anormalement élevée"
+                valideView!!.text ="La température est anormalement élevée"
             }
             super.onPostExecute(aVoid)
         }

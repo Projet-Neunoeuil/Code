@@ -1,10 +1,9 @@
 package com.example.myapplication2.modele
 
-class Temperature constructor(temperatureValeur: Double, heureMinute: String, estDansLaLimite: Boolean) {
+class Temperature constructor(temperatureValeur: Double, dateHeureMinute: String, estDansLaLimite: Boolean) {
     var temperature=temperatureValeur
-    var temps= heureMinute
+    var temps= dateHeureMinute
     var valideTemperature=estDansLaLimite
-
 
     init {
         println("Initialiser")
@@ -13,6 +12,13 @@ class Temperature constructor(temperatureValeur: Double, heureMinute: String, es
     fun validite_temperature(): String{
         if (this.valideTemperature) return "La température est idéale"
         return "La température est anormalement élevée"
+    }
+
+    fun dateTempsChangement() : String{
+        var listeDateHeure=temps.split(" ")
+        var stringHeureMinute=listeDateHeure[1]
+        var listeHeureMinute=stringHeureMinute.split(":")
+        return listeHeureMinute[0]+":"+listeHeureMinute[1]
     }
 
 }

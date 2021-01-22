@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 temperature.temperature=27.0
                 temperature.temps="2020-10-05 17:22:33"
                 temperatureView!!.text = temperature.temperature.toString() + " °C"
-                tempsView!!.text = temperature.temps
+                tempsView!!.text = temperature.dateTempsChangement()
                 valideView!!.text = temperature.validite_temperature()
             //}
             super.onPostExecute(aVoid)

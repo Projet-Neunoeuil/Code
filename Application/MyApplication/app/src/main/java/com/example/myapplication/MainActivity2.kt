@@ -1,9 +1,11 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -16,8 +18,13 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 
+/**
+ *
+ */
 class MainActivity2 : AppCompatActivity() {
+
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -25,7 +32,12 @@ class MainActivity2 : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // verifying device compatibility (Lolipop = API 21 or Android 5.0 and above)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Bar on the botom
+            window.statusBarColor = ContextCompat.getColor(this,R.color.orange); // Bar on the top
+        }
         setContentView(R.layout.fragment_home)
+
         val btn : ImageButton = findViewById<View>(R.id.imageThermo) as ImageButton
         btn.setOnClickListener {
             val i = Intent(this@MainActivity2, Temperatures::class.java)
@@ -36,6 +48,9 @@ class MainActivity2 : AppCompatActivity() {
             val i = Intent(this@MainActivity2, Eclairage::class.java)
             startActivity(i)
         }
+
+
+
         setContentView(R.layout.activity_main2)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

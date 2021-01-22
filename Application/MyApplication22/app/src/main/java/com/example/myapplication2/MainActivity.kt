@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.example.myapplication2.modele.Temperature
 import java.lang.Exception
 import java.sql.DriverManager
+import java.sql.SQLException
 
 class MainActivity : AppCompatActivity() {
     var temperatureView: TextView? = null
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         temperatureView = findViewById<View>(R.id.temperatureValeur) as TextView
         valideView = findViewById<View>(R.id.temperatureValide) as TextView
         tempsView = findViewById<View>(R.id.temperatureTemps) as TextView
-        msgErreurView = findViewById<View>(R.id.temperatureValeur) as TextView
+        msgErreurView = findViewById<View>(R.id.erreurView) as TextView
 
     }
 
@@ -55,15 +56,22 @@ class MainActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 erreurDesDonnees = e.toString()
+            } catch(e:SQLException) {
+                erreurDesDonnees = e.toString()
             }
             return null
         }
 
         override fun onPostExecute(aVoid: Void?) {
             if(erreurDesDonnees !== "") msgErreurView!!.text=erreurDesDonnees
-            temperatureView!!.text =  temperature.temperature.toString()+" °C"
-            tempsView!!.text = temperature.temps
-            valideView!!.text=temperature.validite_temperature()
+            //else {
+                //Utiliser sans BD
+                temperature.temperature=27.0
+                temperature.temps="2020-10-05 17:22:33"
+                temperatureView!!.text = temperature.temperature.toString() + " °C"
+                tempsView!!.text = temperature.temps
+                valideView!!.text = temperature.validite_temperature()
+            //}
             super.onPostExecute(aVoid)
         }
     }

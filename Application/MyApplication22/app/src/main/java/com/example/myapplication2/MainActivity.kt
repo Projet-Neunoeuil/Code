@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import com.example.myapplication2.modele.Temperature
 import java.lang.Exception
 import java.sql.DriverManager
 
@@ -32,9 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
-        var temper = ""
-        var tem= ""
-        var vali = true
+        var temperature = Temperature(0.0,"",true)
         var erreurDesDonnees = ""
 
         override fun doInBackground(vararg params: Void?): Void? {
@@ -42,17 +41,17 @@ class MainActivity : AppCompatActivity() {
                 Class.forName("com.mysql.jdbc.Driver").newInstance()
                 val connexion = DriverManager.getConnection(
                         //jdbc:mysql://<IP>:<port>/<nom de la base>
-                        "jdbc:mysql://193.26.21.39:3306/Application",
-                        "Appli",
+                        "jdbc:mysql://db4free.net:3306/neunoeiltest",
+                        "appli1",
                         "#M0td3p@553"
                 )
                 val etat = connexion.createStatement()
                 //récupération de données
                 val resultatRecup = etat.executeQuery("SELECT * FROM Temperature")
                 if (resultatRecup.next()) {
-                    temper = "${resultatRecup.getString("value")} "
-                    tem =  "${resultatRecup.getString("time")}"
-                    vali = resultatRecup.getBoolean("inRange")
+                    temperature.temperature = resultatRecup.getDouble("value")
+                    temperature.temps =  "${resultatRecup.getString("time")}"
+                    temperature.valideTemperature = resultatRecup.getBoolean("inRange")
                 }
             } catch (e: Exception) {
                 erreurDesDonnees = e.toString()
@@ -62,13 +61,9 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(aVoid: Void?) {
             if(erreurDesDonnees !== "") msgErreurView!!.text=erreurDesDonnees
-            temperatureView!!.text = temper+" °C"
-            tempsView!!.text = tem
-           if (vali == true){
-                valideView!!.text ="La température est idéale"
-            } else {
-                valideView!!.text ="La température est anormalement élevée"
-            }
+            temperatureView!!.text =  temperature.temperature.toString()+" °C"
+            tempsView!!.text = temperature.temps
+            valideView!!.text=temperature.validite_temperature()
             super.onPostExecute(aVoid)
         }
     }

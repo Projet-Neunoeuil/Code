@@ -2,12 +2,14 @@
 
 package com.example.myapplication
 
+import com.example.myapplication.modele.Temperature
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.TextView
-import com.example.myapplication.modele.Temperature
 import java.lang.Exception
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -21,8 +23,17 @@ class Temperatures : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_temperature)
-        /*initView()
-        Async().execute()*/
+
+        //Initialiser les views
+        initView()
+        //Utiliser handler pour rafraichir
+        val handlder = Handler(Looper.getMainLooper())
+        handlder.post(object:Runnable{
+            override fun run() {
+                Async().execute()
+                handlder.postDelayed(this,5000)
+            }
+        })
     }
 
     //Initialiser les views
@@ -66,14 +77,14 @@ class Temperatures : AppCompatActivity() {
 
         override fun onPostExecute(aVoid: Void?) {
             if(erreurDesDonnees !== "") msgErreurView!!.text=erreurDesDonnees
-            //else {
+            else {
             //Utiliser sans BD
             temperature.temperature=27.0
             temperature.temps="2020-10-05 17:22:33"
             temperatureView!!.text = temperature.temperature.toString() + " °C"
             tempsView!!.text = temperature.dateTempsChangement()
             valideView!!.text = temperature.validite_temperature()
-            //}
+            }
             super.onPostExecute(aVoid)
         }
     }

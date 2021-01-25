@@ -11,7 +11,7 @@ import com.example.myapplication2.modele.Temperature
 import java.lang.Exception
 import java.sql.DriverManager
 import java.sql.SQLException
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     var temperatureView: TextView? = null
@@ -48,8 +48,6 @@ class MainActivity : AppCompatActivity() {
                 handlder.removeCallbacks(runnable)
             }*/
         })
-
-
     }
 
     //Initialiser les views

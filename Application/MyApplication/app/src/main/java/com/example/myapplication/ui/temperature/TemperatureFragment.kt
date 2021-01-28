@@ -3,22 +3,18 @@
 package com.example.myapplication.ui.temperature
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
-import android.os.AsyncTask
-import android.os.Handler
-import android.os.Looper
 import com.example.myapplication.modele.Temperature
-import java.lang.Exception
 import java.sql.DriverManager
 import java.sql.SQLException
 
@@ -40,13 +36,11 @@ class GalleryFragment : Fragment() {
         initView(root)
 
         val handlder = Handler(Looper.getMainLooper())
-        handlder.post(object:Runnable{
+        handlder.post(object : Runnable {
             override fun run() {
                 //Variable pour tester rafraichaire par 5 secondes
-
                 Async().execute()
-                handlder.postDelayed(this,5000)
-
+                handlder.postDelayed(this, 5000)
             }
             //Ajoutera un boutton pour arreter ce thread sinon surchargé
             /*nom_boutton_arreter.setOnClickListener{
@@ -55,8 +49,9 @@ class GalleryFragment : Fragment() {
         })
         return root
     }
+
     //Initialiser les views
-    private fun initView(view:View){
+    private fun initView(view: View) {
         //propriétés
         temperatureView = view.findViewById<View>(R.id.temperatureValeur) as? TextView
         valideView = view.findViewById<View>(R.id.temperatureValide) as? TextView
@@ -65,7 +60,7 @@ class GalleryFragment : Fragment() {
     }
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
-        var temperature = Temperature(0.0,"",true)
+        var temperature = Temperature(0.0, "", true)
         var erreurDesDonnees = ""
 
         override fun doInBackground(vararg params: Void?): Void? {
@@ -82,12 +77,14 @@ class GalleryFragment : Fragment() {
                 val resultatRecup = etat.executeQuery("SELECT * FROM Temperature")
                 if (resultatRecup.next()) {
                     temperature.temperature = resultatRecup.getDouble("value")
-                    temperature.temps =  "${resultatRecup.getString("time")}"
+                    temperature.temps = "${resultatRecup.getString("time")}"
                     temperature.valideTemperature = resultatRecup.getBoolean("inRange")
                 }
             } catch (e: Exception) {
                 erreurDesDonnees = e.toString()
-            } catch(e:SQLException) {
+            } catch (e: SQLException) {
+                erreurDesDonnees = e.toString()
+            } catch (e: ClassNotFoundException) {
                 erreurDesDonnees = e.toString()
             }
             return null
@@ -95,17 +92,15 @@ class GalleryFragment : Fragment() {
 
         @SuppressLint("ResourceType")
         override fun onPostExecute(aVoid: Void?) {
-            if(erreurDesDonnees !== "") {
-                msgErreurView!!.text=erreurDesDonnees
-            }
-            else {
+            if (erreurDesDonnees !== "") {
+                msgErreurView!!.text = erreurDesDonnees
+            } else {
                 temperatureView!!.text = temperature.temperature.toString() + " °C"
                 tempsView!!.text = temperature.dateTempsChangement()
                 valideView!!.text = temperature.validite_temperature()
                 //Changer la couleur selon la température
                 temperatureView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
                 valideView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
-
                 //valideView!!.setTextColor(ColorStateList.createFromXml(getResources(),getResources().getXml(R.color.vert))) normalement il faut utiliser ça, mais ça marche pas donc j'utilise une autre méthode
             }
             super.onPostExecute(aVoid)

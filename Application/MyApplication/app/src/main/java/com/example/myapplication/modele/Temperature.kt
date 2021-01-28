@@ -21,4 +21,10 @@ class Temperature constructor(temperatureValeur: Double, dateHeureMinute: String
         return listeHeureMinute[0]+":"+listeHeureMinute[1]
     }
 
+    fun couleurChangement(): String{
+        if (this.valideTemperature) return "#B6DF5D"
+        return "#E2685F"
+    }
+
+
 }

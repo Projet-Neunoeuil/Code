@@ -23,7 +23,7 @@
         android:id="@+id/temperatureTemps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="124dp"
         android:ems="10"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,28 +33,17 @@
 
     <TextView
         android:id="@+id/temperatureValeur"
-        android:layout_width="206dp"
+        android:layout_width="300dp"
         android:layout_height="139dp"
         android:layout_marginTop="148dp"
         android:ems="10"
-
+        android:textSize="80sp"
+        android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="120dp"
-        android:text="Temperature Mesurée à :"
-        android:textColor="@color/orange"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temperatureValide" />
 
     <TextView
         android:id="@+id/temperatureValide"
@@ -63,10 +52,25 @@
         android:layout_marginTop="68dp"
         android:text="La température est "
         android:textColor="@color/vert"
+        android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperatureValeur" />
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="124dp"
+        android:text="Temperature Mesurée à :"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureValide" />
 
     <Button
         android:id="@+id/button"
@@ -87,10 +91,11 @@
         android:id="@+id/erreurView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginBottom="21dp"
-        android:text="TextView"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/Erreur"
+        android:text=""
         app:layout_constraintBottom_toTopOf="@+id/temperatureValeur"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

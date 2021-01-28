@@ -2,6 +2,9 @@
 
 package com.example.myapplication.ui.temperature
 
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -90,12 +93,20 @@ class GalleryFragment : Fragment() {
             return null
         }
 
+        @SuppressLint("ResourceType")
         override fun onPostExecute(aVoid: Void?) {
-            if(erreurDesDonnees !== "") msgErreurView!!.text=erreurDesDonnees
+            if(erreurDesDonnees !== "") {
+                msgErreurView!!.text=erreurDesDonnees
+            }
             else {
                 temperatureView!!.text = temperature.temperature.toString() + " °C"
                 tempsView!!.text = temperature.dateTempsChangement()
                 valideView!!.text = temperature.validite_temperature()
+                //Changer la couleur selon la température
+                temperatureView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
+                valideView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
+
+                //valideView!!.setTextColor(ColorStateList.createFromXml(getResources(),getResources().getXml(R.color.vert))) normalement il faut utiliser ça, mais ça marche pas donc j'utilise une autre méthode
             }
             super.onPostExecute(aVoid)
         }

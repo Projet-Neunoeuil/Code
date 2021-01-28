@@ -79,11 +79,12 @@ class Temperatures : AppCompatActivity() {
             if(erreurDesDonnees !== "") msgErreurView!!.text=erreurDesDonnees
             else {
             //Utiliser sans BD
-            temperature.temperature=27.0
-            temperature.temps="2020-10-05 17:22:33"
-            temperatureView!!.text = temperature.temperature.toString() + " °C"
-            tempsView!!.text = temperature.dateTempsChangement()
-            valideView!!.text = temperature.validite_temperature()
+                temperature.temperature=27.0
+                temperature.temps="2020-10-05 17:22:33"
+                temperatureView!!.text = temperature.temperature.toString() + " °C"
+                tempsView!!.text = temperature.dateTempsChangement()
+                valideView!!.text = temperature.validite_temperature()
+                valideView!!.setTextColor(getResources().getColor(R.color.Erreur))
             }
             super.onPostExecute(aVoid)
         }

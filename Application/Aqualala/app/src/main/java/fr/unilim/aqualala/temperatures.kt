@@ -84,7 +84,7 @@ class Temperatures : AppCompatActivity() {
                 temperature.temps="2020-10-05 17:22:33"
                 temperatureView!!.text = temperature.temperature.toString() + " °C"
                 tempsView!!.text = temperature.dateTempsChangement()
-                valideView!!.text = temperature.validite_temperature()
+                valideView!!.text = temperature.validiteTemperatureText()
                 valideView!!.setTextColor(getResources().getColor(R.color.Erreur))
             }
             super.onPostExecute(aVoid)

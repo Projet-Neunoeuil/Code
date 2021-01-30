@@ -14,8 +14,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
+import fr.unilim.aqualala.modele.ConnecteurBD
 import fr.unilim.aqualala.modele.Temperature
-import java.sql.DriverManager
 import java.sql.SQLException
 
 class GalleryFragment : Fragment() {
@@ -24,30 +24,13 @@ class GalleryFragment : Fragment() {
     var tempsView: TextView? = null
     var msgErreurView: TextView? = null
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_temperature, container, false)
+        val textView: TextView = view.findViewById(R.id.textView2)
 
-        val root = inflater.inflate(R.layout.fragment_temperature, container, false)
-        val textView: TextView = root.findViewById(R.id.textView2)
-
-        initView(root)
-
-        val handlder = Handler(Looper.getMainLooper())
-        handlder.post(object : Runnable {
-            override fun run() {
-                //Variable pour tester rafraichaire par 5 secondes
-                Async().execute()
-                handlder.postDelayed(this, 5000)
-            }
-            //Ajoutera un boutton pour arreter ce thread sinon surchargé
-            /*nom_boutton_arreter.setOnClickListener{
-                handlder.removeCallbacks(runnable)
-            }*/
-        })
-        return root
+        initView(view)
+        RafraichirPeriodiquement(5000)//rafraichaire par 5 secondes
+        return view
     }
 
     //Initialiser les views
@@ -59,22 +42,30 @@ class GalleryFragment : Fragment() {
         msgErreurView = view.findViewById<View>(R.id.erreurView) as? TextView
     }
 
+    //Rafrachir Ui périodiquement
+    private fun RafraichirPeriodiquement(periode: Long) {
+        val handlder = Handler(Looper.getMainLooper())
+        handlder.post(object : Runnable {
+            override fun run() {
+                Async().execute()
+                handlder.postDelayed(this, periode)
+            }
+            //Ajoutera un boutton pour arreter ce thread sinon surchargé
+            /*nom_boutton_arreter.setOnClickListener{
+                handlder.removeCallbacks(runnable)
+            }*/
+        })
+    }
+
+
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
-        var temperature = Temperature(0.0, "", true)
-        var erreurDesDonnees = ""
+        var connectBD = ConnecteurBD("*", "Temperature") //connexion avec la bd
+        var temperature = Temperature(0.0, "", true) //temperature
+        var erreurDesDonnees = "" //message d'erreur
 
         override fun doInBackground(vararg params: Void?): Void? {
             try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance()
-                val connexion = DriverManager.getConnection(
-                        //jdbc:mysql://<IP>:<port>/<nom de la base>
-                        "jdbc:mysql://193.26.21.39:3306/Application",
-                        "Appli",
-                        "#M0td3p@553"
-                )
-                val etat = connexion.createStatement()
-                //récupération de données
-                val resultatRecup = etat.executeQuery("SELECT * FROM Temperature")
+                val resultatRecup = connectBD.selectionBD()
                 if (resultatRecup.next()) {
                     temperature.temperature = resultatRecup.getDouble("value")
                     temperature.temps = "${resultatRecup.getString("time")}"
@@ -92,13 +83,13 @@ class GalleryFragment : Fragment() {
 
         @SuppressLint("ResourceType")
         override fun onPostExecute(aVoid: Void?) {
-            if (erreurDesDonnees !== "") {
+            if (erreurDesDonnees !== "") { //afficher message erreur si faux
                 msgErreurView!!.text = erreurDesDonnees
-            } else {
+            } else { //afficher la température sinon
                 temperatureView!!.text = temperature.temperature.toString() + " °C"
                 tempsView!!.text = temperature.dateTempsChangement()
-                valideView!!.text = temperature.validite_temperature()
-                //Changer la couleur selon la température
+                valideView!!.text = temperature.validiteTemperatureText()
+                //changer la couleur selon la température
                 temperatureView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
                 valideView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
                 //valideView!!.setTextColor(ColorStateList.createFromXml(getResources(),getResources().getXml(R.color.vert))) normalement il faut utiliser ça, mais ça marche pas donc j'utilise une autre méthode

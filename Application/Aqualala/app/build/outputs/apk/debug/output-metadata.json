@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "fr.unilim.iut.aqualala",
+  "applicationId": "com.example.myapplication",
   "variantName": "processDebugResources",
   "elements": [
     {

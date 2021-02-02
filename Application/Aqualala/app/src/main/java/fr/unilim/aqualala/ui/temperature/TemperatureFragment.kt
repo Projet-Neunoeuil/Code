@@ -59,7 +59,7 @@ class GalleryFragment : Fragment() {
 
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
-        var connectBD = ConnecteurBD("*", "Temperature") //connexion avec la bd
+        var connectBD = ConnecteurBD("*", "Temperature","","time DESC") //connexion avec la bd
         var temperature = Temperature(0.0, "", true) //temperature
         var erreurDesDonnees = "" //message d'erreur
 

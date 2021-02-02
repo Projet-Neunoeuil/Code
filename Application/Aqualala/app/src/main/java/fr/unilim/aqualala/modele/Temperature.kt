@@ -8,13 +8,14 @@ class Temperature constructor(temperatureValeur: Double, dateHeureMinute: String
     //Afficher l'inistialiser
     init {
         println("Température = $temperature")
-        println("Temps = $dateHeureMinute")
-        println("validité de température = $estDansLaLimite")
+        println("Temps = $temps")
+        println("validité de température = $valideTemperature")
     }
 
     //retourer de la validité de la température
     fun validiteTemperatureText(): String{
         if (this.valideTemperature) return "La température est idéale"
+        else if (this.temperature<Constantes.MINTEMPERATURE)  return "La température est anormalement baisse"
         return "La température est anormalement élevée"
     }
 

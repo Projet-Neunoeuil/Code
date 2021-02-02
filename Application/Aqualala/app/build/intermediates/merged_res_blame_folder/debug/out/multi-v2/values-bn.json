@@ -4,6 +4,26 @@
             "outputFile": "C:\\Wamp\\www\\Projet Neunoeil\\Code\\Application\\Aqualala\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
             "map": [
                 {
+<<<<<<< Updated upstream
+=======
+                    "source": "C:\\Users\\dell\\.gradle\\caches\\transforms-2\\files-2.1\\ff57e8d7897963b8d8745a48fd6c6496\\navigation-ui-2.2.2\\res\\values-bn\\values-bn.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,167",
+                        "endColumns": "111,116",
+                        "endOffsets": "162,279"
+                    },
+                    "to": {
+                        "startLines": "29,30",
+                        "startColumns": "4,4",
+                        "startOffsets": "2835,2947",
+                        "endColumns": "111,116",
+                        "endOffsets": "2942,3059"
+                    }
+                },
+                {
+>>>>>>> Stashed changes
                     "source": "C:\\Users\\dell\\.gradle\\caches\\transforms-2\\files-2.1\\f1f33b62267c75a6f99331b460a092b0\\appcompat-1.2.0\\res\\values-bn\\values-bn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
@@ -23,11 +43,19 @@
                         "endOffsets": "151"
                     },
                     "to": {
+<<<<<<< Updated upstream
                         "startLines": "30",
                         "startColumns": "4",
                         "startOffsets": "2922",
                         "endColumns": "100",
                         "endOffsets": "3018"
+=======
+                        "startLines": "32",
+                        "startColumns": "4",
+                        "startOffsets": "3151",
+                        "endColumns": "100",
+                        "endOffsets": "3247"
+>>>>>>> Stashed changes
                     }
                 }
             ]

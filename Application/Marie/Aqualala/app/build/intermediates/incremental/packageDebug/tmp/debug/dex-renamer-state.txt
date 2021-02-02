@@ -1,0 +1,4 @@
+#Mon Feb 01 21:25:57 CET 2021
+base.0=C\:\\Wamp\\www\\Projet Neunoeil\\Code\\Application\\Marie\\Aqualala\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

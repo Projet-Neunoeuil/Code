@@ -1,32 +1,43 @@
 import serial,pymysql
 from datetime import datetime
-from time import strftime
-
 
 if __name__ == '__main__':
-    conn = pymysql.connect(host = "db4free.net", user = "appli1", password = "#M0td3p@553", database = "neunoeiltest")
+    #connection to the database
+    conn = pymysql.connect(host = "avalgan.ch", user = "Appli", password = "#M0td3p@553", database = "TempNeunoeil")
     cur = conn.cursor()
+    
+    #recovery of the temperature range desired by the user
     cur.execute(f"SELECT minTemp, maxTemp FROM Parametters")
-    limitTemp = cur.fetchone()
+    limitTemp = cur.fetchone()    
     minTemp = limitTemp[0]
-    maxTemp = limitTemp[1]    
-    #print('Running. Press CTRL-C to exit.')
+    maxTemp = limitTemp[1]
+    
+    #connection to the serial port of the arduino
     with serial.Serial("/dev/ttyACM0", 9600, timeout=9.9) as arduino:
-        #time.sleep(0.1) #wait for serial to open
         if arduino.isOpen():
-            #print("{} connected!".format(arduino.port))
             try:
                 while True:
-                    answer=str(arduino.readline())
-                    #print(answer)
-                    dataList=answer.split("'")
-                    temperature = float(dataList[1])
-                    date = strftime(%Y-%m-%d %H:%M:%S, datetime.now())                    
+                    #recovery of the temperature on the serial port measured by the arduino
+                    answer = str(arduino.readline())
+                    array = answer.split("'")
+                    temperature = float(array[1])
+                    
+                    #check if temperature measured is valid
                     isValid = int(temperature >= minTemp and temperature <= maxTemp)
-                    cur.execute(f"INSERT INTO Temperature (value, time, inRange) VALUES ('{temperature}', '{date}', '{isValid}')")
+                    
+                    #recovery of the current date
+                    date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    
+                    #execution of the sql query
+                    cur.execute(f"INSERT INTO Temperature (value, time, inRange) VALUES ('{temperature}', '{date_time}', '{isValid}')")
                     conn.commit()
+                    
+                    #display the measured temperature and the current date
                     print("Température : {}".format(temperature))
-                    arduino.flushInput() #remove data after reading
+                    print(date_time)
+                    
+                    #remove data after reading
+                    arduino.flushInput()
             except KeyboardInterrupt:
                 print("KeyboardInterrupt has been caught.")
     conn.close()

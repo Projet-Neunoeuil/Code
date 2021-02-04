@@ -1,3 +1,4 @@
+// select the analogic input A0
 const int sensorPin = A0;
 
 void setup() {
@@ -16,7 +17,10 @@ void loop() {
   // the sensor changes 10 mV per degree
   // the datasheet says there's a 500 mV offset
   float temperature = (voltage - .5) * 100;
+  
+  // write the temperature to the serial port
   Serial.print(temperature);
-
+  
+  // loop repeated every 10 seconds
   delay(10000);
 }

@@ -20,7 +20,7 @@ CREATE TABLE `Temperature` (
   Table paramètres : enregistre les choix de l'utilisateur, non modifiable lors des 1ères realease, editable via l'appli a posteriori
   Sauvegardée sur 24h
 */
-CREATE TABLE `Parametters` (
+CREATE TABLE `Parameters` (
 `minTemp` DOUBLE (5,2) NOT NULL,
 `maxTemp` DOUBLE (5,2) NOT NULL,
 `blueTime` TIME NOT NULL,

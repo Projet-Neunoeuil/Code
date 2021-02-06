@@ -15,7 +15,7 @@ class Temperature constructor(temperatureValeur: Double, dateHeureMinute: String
     //retourer de la validité de la température
     fun validiteTemperatureText(): String{
         if (this.valideTemperature) return "La température est idéale"
-        else if (this.temperature<Constantes.MINTEMPERATURE)  return "La température est anormalement baisse"
+        else if (this.temperature<Constantes.MINTEMPERATURE)  return "La température est anormalement basse"
         return "La température est anormalement élevée"
     }
 

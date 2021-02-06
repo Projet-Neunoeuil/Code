@@ -1,5 +1,7 @@
 package fr.unilim.aqualala.modele
 
+import java.sql.ResultSet
+
 class Temperature constructor(temperatureValeur: Double, dateHeureMinute: String, estDansLaLimite: Boolean) {
     var temperature=temperatureValeur
     var temps= dateHeureMinute
@@ -26,10 +28,17 @@ class Temperature constructor(temperatureValeur: Double, dateHeureMinute: String
         val listeHeureMinute=stringHeureMinute.split(":")
         return listeHeureMinute[0]+":"+listeHeureMinute[1]
     }
-
+    //récupérer des données de table rendue
+    fun recupereDonne(resultatRecup: ResultSet){
+        if (resultatRecup.next()) {
+            temperature = resultatRecup.getDouble("value")
+            temps = "${resultatRecup.getString("time")}"
+            valideTemperature = resultatRecup.getBoolean("inRange")
+        }
+    }
     //changer la couleur de text selon la validité de  la température
     fun couleurChangement(): String{
-        if (this.valideTemperature) return "#B6DF5D"
-        return "#E2685F"
+        if (this.valideTemperature) return "#B6DF5D" //vert
+        return "#E2685F" //rouge
     }
 }

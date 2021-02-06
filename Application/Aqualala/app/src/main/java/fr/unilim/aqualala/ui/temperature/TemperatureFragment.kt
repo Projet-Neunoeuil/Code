@@ -81,11 +81,14 @@ class GalleryFragment : Fragment() {
             return null
         }
 
-        @SuppressLint("ResourceType")
         override fun onPostExecute(aVoid: Void?) {
             if (erreurDesDonnees !== "") { //afficher message erreur si faux
+                temperatureView!!.text = ""
+                tempsView!!.text = ""
+                valideView!!.text = ""
                 msgErreurView!!.text = erreurDesDonnees
             } else { //afficher la température sinon
+                msgErreurView!!.text = ""
                 temperatureView!!.text = temperature.temperature.toString() + " °C"
                 tempsView!!.text = temperature.dateTempsChangement()
                 valideView!!.text = temperature.validiteTemperatureText()

@@ -20,13 +20,8 @@ class ConnecteurBD  constructor(select: String, from: String){
     }
     //afficher l'inistialiser
     init {
-        println("colone = $colone")
-        println("Table = $table")
-        println("condition = $condition")
         var requete = "SELECT $colone FROM $table"
-        if (condition != "") {
-            requete +=" WHERE $condition"
-        }
+        if (condition != "") requete +=" WHERE $condition"
         println(requete)
     }
 
@@ -45,12 +40,8 @@ class ConnecteurBD  constructor(select: String, from: String){
         val etat = connectionBD()
         var requete = "SELECT $colone FROM $table"
         //récupération de données
-        if (condition != "") {
-            requete +=" WHERE $condition"
-        }
-        if (order != "") {
-            requete +=" ORDER BY $order"
-        }
+        if (condition != "") requete +=" WHERE $condition"
+        if (order != "") requete +=" ORDER BY $order"
         return etat.executeQuery(requete)
     }
 

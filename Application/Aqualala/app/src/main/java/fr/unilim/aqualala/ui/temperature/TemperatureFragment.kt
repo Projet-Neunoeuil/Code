@@ -2,7 +2,6 @@
 
 package fr.unilim.aqualala.ui.temperature
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
@@ -28,13 +27,13 @@ class GalleryFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_temperature, container, false)
         val textView: TextView = view.findViewById(R.id.textView2)
 
-        initView(view)
+        liasonView(view)
         RafraichirPeriodiquement(5000)//rafraichaire par 5 secondes
         return view
     }
 
     //Initialiser les views
-    private fun initView(view: View) {
+    private fun liasonView(view: View) {
         //propriétés
         temperatureView = view.findViewById<View>(R.id.temperatureValeur) as? TextView
         valideView = view.findViewById<View>(R.id.temperatureValide) as? TextView
@@ -42,7 +41,32 @@ class GalleryFragment : Fragment() {
         msgErreurView = view.findViewById<View>(R.id.erreurView) as? TextView
     }
 
-    //Rafrachir Ui périodiquement
+    //S'il y a des erreurs mettre tous ce qui concerne la température en vide
+    private fun mettreVideTemperature(){
+        temperatureView!!.text = ""
+        tempsView!!.text = ""
+        valideView!!.text = ""
+    }
+
+    //S'il n'y a pas d'erreur, mettre tous ce qui concernent le message d'erreur en vide
+    private fun mettreVideMessageErreur(){
+        msgErreurView!!.text = ""
+    }
+
+    //donner les valeurs aux text view
+    private fun appliqueValeurTextView(temperature: Temperature){
+        temperatureView!!.text = temperature.temperature.toString() + " °C"
+        tempsView!!.text = temperature.dateTempsChangement()
+        valideView!!.text = temperature.validiteTemperatureText()
+    }
+
+    //changer la couleur selon la température
+    private fun changerCouleurSelonValiditeTemperature(temperature: Temperature){
+        temperatureView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
+        valideView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
+    }
+
+    //rafrachir Ui périodiquement
     private fun RafraichirPeriodiquement(periode: Long) {
         val handlder = Handler(Looper.getMainLooper())
         handlder.post(object : Runnable {
@@ -50,52 +74,33 @@ class GalleryFragment : Fragment() {
                 Async().execute()
                 handlder.postDelayed(this, periode)
             }
-            //Ajoutera un boutton pour arreter ce thread sinon surchargé
-            /*nom_boutton_arreter.setOnClickListener{
-                handlder.removeCallbacks(runnable)
-            }*/
         })
     }
 
 
     internal inner class Async : AsyncTask<Void?, Void?, Void?>() {
         var connectBD = ConnecteurBD("*", "Temperature","","time DESC") //connexion avec la bd
-        var temperature = Temperature(0.0, "", true) //temperature
+        var temperature = Temperature(0.0, "", false) //temperature
         var erreurDesDonnees = "" //message d'erreur
 
         override fun doInBackground(vararg params: Void?): Void? {
             try {
                 val resultatRecup = connectBD.selectionBD()
-                if (resultatRecup.next()) {
-                    temperature.temperature = resultatRecup.getDouble("value")
-                    temperature.temps = "${resultatRecup.getString("time")}"
-                    temperature.valideTemperature = resultatRecup.getBoolean("inRange")
-                }
-            } catch (e: Exception) {
-                erreurDesDonnees = e.toString()
-            } catch (e: SQLException) {
-                erreurDesDonnees = e.toString()
-            } catch (e: ClassNotFoundException) {
-                erreurDesDonnees = e.toString()
-            }
+                temperature.recupereDonne(resultatRecup)
+            } catch (e: Exception) { erreurDesDonnees = e.toString() }
+            catch (e: SQLException) { erreurDesDonnees = e.toString() }
+            catch (e: ClassNotFoundException) { erreurDesDonnees = e.toString() }
             return null
         }
 
         override fun onPostExecute(aVoid: Void?) {
+            changerCouleurSelonValiditeTemperature(temperature)
             if (erreurDesDonnees !== "") { //afficher message erreur si faux
-                temperatureView!!.text = ""
-                tempsView!!.text = ""
-                valideView!!.text = ""
+                mettreVideTemperature()
                 msgErreurView!!.text = erreurDesDonnees
             } else { //afficher la température sinon
-                msgErreurView!!.text = ""
-                temperatureView!!.text = temperature.temperature.toString() + " °C"
-                tempsView!!.text = temperature.dateTempsChangement()
-                valideView!!.text = temperature.validiteTemperatureText()
-                //changer la couleur selon la température
-                temperatureView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
-                valideView!!.setTextColor(Color.parseColor(temperature.couleurChangement()))
-                //valideView!!.setTextColor(ColorStateList.createFromXml(getResources(),getResources().getXml(R.color.vert))) normalement il faut utiliser ça, mais ça marche pas donc j'utilise une autre méthode
+                mettreVideMessageErreur()
+                appliqueValeurTextView(temperature)
             }
             super.onPostExecute(aVoid)
         }

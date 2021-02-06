@@ -2,7 +2,7 @@
   Suppréssion des tables si elles existent pour purger la BD
 */
 DROP TABLE IF EXISTS `Temperature`;
-DROP TABLE IF EXISTS `Parametters`;
+DROP TABLE IF EXISTS `Parameters`;
 DROP TABLE IF EXISTS `DailyAverage`;
 DROP TABLE IF EXISTS `MonthlyAverage`;
 DROP TABLE IF EXISTS `Month`;

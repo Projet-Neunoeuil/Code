@@ -1,6 +1,10 @@
 import serial,pymysql
 from datetime import datetime
 
+"""
+The main raspberry function, it gets the temperature from the arduino, and put it treated into the database
+@author Raphael Baulant
+"""
 if __name__ == '__main__':
     #connection to the database
     conn = pymysql.connect(host = "avalgan.ch", user = "Appli", password = "#M0td3p@553", database = "TempNeunoeil")

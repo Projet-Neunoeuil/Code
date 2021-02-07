@@ -1,2 +1,2 @@
-fr/unilim/iut/aqualala/BuildConfig.java
- fr.unilim.iut.aqualala.BuildConfig
+com/example/aqualala/BuildConfig.java
+ com.example.aqualala.BuildConfig

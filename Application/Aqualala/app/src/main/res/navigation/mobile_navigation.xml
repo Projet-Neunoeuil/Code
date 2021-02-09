@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="fr.unilim.aqualala.view.home.HomeFragment"
+        android:name="fr.unilim.aqualala.controller.HomeController"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_temperature"
-        android:name="fr.unilim.aqualala.view.temperature.GalleryFragment"
+        android:name="fr.unilim.aqualala.controller.TemperatureController"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_temperature" />
 
     <fragment
         android:id="@+id/nav_eclairage"
-        android:name="fr.unilim.aqualala.view.eclairage.EclairFragment"
+        android:name="fr.unilim.aqualala.controller.EclairageController"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_eclairage" />
 </navigation>

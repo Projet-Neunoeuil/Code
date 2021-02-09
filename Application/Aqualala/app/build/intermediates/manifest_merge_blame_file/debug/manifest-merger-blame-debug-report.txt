@@ -39,9 +39,9 @@
 24        <activity android:name="fr.unilim.aqualala.Temperatures" />
 24-->C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:13:9-68
 24-->C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:13:19-65
-25        <activity android:name="fr.unilim.aqualala.MainActivity" >
+25        <activity android:name="fr.unilim.aqualala.controller.MainActivity" >
 25-->C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:14:9-20:20
-25-->C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:14:19-65
+25-->C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:14:19-76
 26            <intent-filter>
 26-->C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:15:13-19:29
 27                <action android:name="android.intent.action.MAIN" />

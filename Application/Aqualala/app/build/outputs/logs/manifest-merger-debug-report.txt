@@ -99,10 +99,10 @@ activity#fr.unilim.aqualala.Temperatures
 ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:13:9-68
 	android:name
 		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:13:19-65
-activity#fr.unilim.aqualala.MainActivity
+activity#fr.unilim.aqualala.controller.MainActivity
 ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:14:9-20:20
 	android:name
-		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:14:19-65
+		ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:14:19-76
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Wamp\www\Projet Neunoeil\Code\Application\Aqualala\app\src\main\AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN

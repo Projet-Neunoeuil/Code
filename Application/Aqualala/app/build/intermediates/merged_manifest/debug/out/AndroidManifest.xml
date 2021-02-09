@@ -22,7 +22,7 @@
         <activity android:name="fr.unilim.aqualala.controller.ModificationEclairage" />
         <activity android:name="fr.unilim.aqualala.controller.Eclairage" />
         <activity android:name="fr.unilim.aqualala.Temperatures" />
-        <activity android:name="fr.unilim.aqualala.MainActivity" >
+        <activity android:name="fr.unilim.aqualala.controller.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }*/
 
-        // menu tiré de la droite,
+        // menu tiré de la droite
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

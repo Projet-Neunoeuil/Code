@@ -920,7 +920,6 @@ bool abc_action_bar_embed_tabs
 bool abc_allow_stacked_button_bar
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
-color Erreur
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1113,6 +1112,7 @@ color purple_700
 color radiobutton_themeable_attribute_color
 color ripple_material_dark
 color ripple_material_light
+color rose_pastel
 color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
@@ -1745,6 +1745,7 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id commentaireTemperature
 id confirm_button
 id container
 id content
@@ -1787,7 +1788,7 @@ id edit_query
 id end
 id enterAlways
 id enterAlwaysCollapsed
-id erreurView
+id erreur
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -1981,9 +1982,8 @@ id tag_screen_reader_focusable
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
-id temperatureTemps
 id temperatureValeur
-id temperatureValide
+id temps
 id test_checkbox_android_button_tint
 id test_checkbox_app_button_tint
 id test_radiobutton_android_button_tint
@@ -1998,11 +1998,9 @@ id textView
 id textView10
 id textView11
 id textView12
-id textView2
 id textView3
 id textView4
 id textView5
-id textView6
 id textView8
 id textView9
 id text_input_end_icon
@@ -2017,6 +2015,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id titreTemperature
 id toggle
 id toolbar
 id top
@@ -2035,6 +2034,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id valeurTemps
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag

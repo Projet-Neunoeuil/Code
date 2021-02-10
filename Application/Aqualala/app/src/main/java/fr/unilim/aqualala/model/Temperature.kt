@@ -28,7 +28,7 @@ class Temperature constructor(valeur: Double, tempsMesure: String, estDansLaLimi
         val temps=dateTemps[1]
         //hh:mm:ss
         val heureMinute=temps.split(":")
-        return "${heureMinute[0]}:${heureMinute[1]}"
+        return "Température mesurée à ${heureMinute[0]} : ${heureMinute[1]}"
     }
 
     //changer la couleur de texte selon la validité de  la température

@@ -17,7 +17,7 @@ class TemperatureView {
         //propriétés
         valeur = view.findViewById<View>(R.id.temperatureValeur) as TextView
         commentaire = view.findViewById<View>(R.id.commentaireTemperature) as TextView
-        temps = view.findViewById<View>(R.id.valeurTemps) as TextView
+        temps = view.findViewById<View>(R.id.temps) as TextView
         msgErreur = view.findViewById<View>(R.id.erreur) as TextView
     }
 

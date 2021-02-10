@@ -16,7 +16,7 @@ void loop() {
   // convert the voltage to temperature in degrees C
   // the sensor changes 10 mV per degree
   // the datasheet says there's a 500 mV offset
-  float temperature = (voltage - .5) * 100;
+  float temperature = (voltage - 0.5) * 100;
   
   // write the temperature to the serial port
   Serial.print(temperature);

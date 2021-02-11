@@ -17,7 +17,7 @@ import fr.unilim.aqualala.model.Constantes
 import fr.unilim.aqualala.view.temperature.TemperatureView
 import java.sql.SQLException
 
-class TemperatureController : Fragment() {
+class   TemperatureController : Fragment() {
     var temperatureView = TemperatureView()
     var temperature = Temperature(0.0, "", true)
 

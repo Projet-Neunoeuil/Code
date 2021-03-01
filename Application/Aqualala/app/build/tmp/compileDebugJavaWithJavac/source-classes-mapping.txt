@@ -1,2 +1,0 @@
-com/example/aqualala/BuildConfig.java
- com.example.aqualala.BuildConfig
